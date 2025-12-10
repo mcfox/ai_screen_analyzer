@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.metadata["changelog_uri"] = "https://github.com/mcfox/ai_screen_analyzer/releases"
 
   # Specify which files should be added to the gem when it is released.
-  spec.files = Dir.glob("lib/**/*") + Dir.glob(git commit -m "first commit""app/**/*") + Dir.glob("config/**/*") +
+  spec.files = Dir.glob("lib/**/*") + Dir.glob("app/**/*") + Dir.glob("config/**/*") +
                ["README.md", "LICENSE.txt", "CHANGELOG.md"]
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }

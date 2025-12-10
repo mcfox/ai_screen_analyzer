@@ -1,9 +1,9 @@
 <% # AI Screen Analyzer Component %>
 
-<div class="ai-screen-analyzer-container">
+<div>
   <!-- Botão flutuante para ativar análise -->
   <button 
-    class="ai-analyzer-button" 
+    class="button"
     id="ai-analyzer-trigger"
     title="Clique para analisar a tela com IA"
   >
@@ -321,7 +321,7 @@
             const imageData = canvas.toDataURL('image/jpeg', 0.8);
 
             // Enviar para backend
-            const response = await fetch('<%= ai_screen_analyzer.analyze_screen_path %>', {
+            const response = await fetch('/ai_screen_analyzer/analyze-screen', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

@@ -39,6 +39,7 @@ module AiScreenAnalyzer
       uri = URI('https://api.openai.com/v1/chat/completions')
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Post.new(uri.path)
       request['Content-Type'] = 'application/json'

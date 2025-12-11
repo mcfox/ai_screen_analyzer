@@ -32,6 +32,27 @@ Execute o generator de instalação:
 rails generate ai_screen_analyzer:install
 ```
 
+## Rotas
+
+O generator monta automaticamente o engine em seu aplicativo host. Após a instalação, estas rotas ficam disponíveis por padrão:
+
+- Engine montado em: `/ai_screen_analyzer`
+- Endpoint de análise: `POST /ai_screen_analyzer/analyze-screen`
+
+Caso precise montar manualmente (ou personalizar o caminho), adicione em `config/routes.rb` do seu app:
+
+```ruby
+# Mount the AiScreenAnalyzer engine, exposing its routes under /ai_screen_analyzer
+mount AiScreenAnalyzer::Engine => '/ai_screen_analyzer', as: 'ai_screen_analyzer_engine'
+
+# (Opcional) Alias direto para compatibilidade com chamadas existentes
+post '/ai_screen_analyzer/analyze-screen', to: 'ai_screen_analyzer/ai_analyzer#analyze_screen'
+```
+
+Observações:
+- A view da gem usa helpers de rota para resolver o endpoint dinamicamente conforme o path montado, evitando 404 quando você personaliza o caminho.
+- Se alterar o path de montagem, não é necessário mudar nada na view; o helper apontará para o novo caminho.
+
 ## Configuração
 
 ### 1. Chave de API da OpenAI
@@ -180,6 +201,18 @@ Certifique-se de que:
 - A chave de API da OpenAI está configurada corretamente
 - Você tem créditos suficientes em sua conta OpenAI
 - A rota está registrada corretamente
+
+### Erro 404 ao chamar analyze-screen
+
+- Garanta que o engine esteja montado no app host. Por padrão, o generator já adiciona esta linha ao seu `config/routes.rb`:
+
+  ```ruby
+  mount AiScreenAnalyzer::Engine => '/ai_screen_analyzer', as: 'ai_screen_analyzer_engine'
+  ```
+
+- Se você removeu a montagem automática, adicione-a manualmente como acima.
+- Reinicie o servidor após mudar as rotas.
+- Rode `bin/rails routes | grep ai_screen_analyzer` para confirmar a presença do endpoint `analyze-screen`.
 
 ### Erro de CORS
 

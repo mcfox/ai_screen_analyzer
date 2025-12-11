@@ -22,6 +22,14 @@ bundle install
 rails generate ai_screen_analyzer:install
 ```
 
+O generator monta automaticamente o engine na sua aplicação host em `/ai_screen_analyzer`. O endpoint de análise fica acessível em `POST /ai_screen_analyzer/analyze-screen`.
+
+Se quiser um caminho diferente, edite `config/routes.rb` do seu app:
+
+```ruby
+mount AiScreenAnalyzer::Engine => '/meu_path', as: 'ai_screen_analyzer_engine'
+```
+
 ## 3. Configurar API Key
 
 Defina sua chave da OpenAI:
@@ -94,6 +102,14 @@ Visite `http://localhost:3000` e você verá um botão roxo no canto inferior di
 **Análise não funciona?**
 - Verifique se `OPENAI_API_KEY` está definida
 - Verifique os logs do Rails
+
+**Erro 404 no analyze-screen?**
+- Confirme que o engine está montado (o generator faz isso automaticamente):
+  ```ruby
+  mount AiScreenAnalyzer::Engine => '/ai_screen_analyzer', as: 'ai_screen_analyzer_engine'
+  ```
+- Reinicie o servidor após alterar rotas
+- Rode `bin/rails routes | grep ai_screen_analyzer` para verificar as rotas
 
 **Erro de CORS?**
 - Certifique-se de que recursos externos usam HTTPS

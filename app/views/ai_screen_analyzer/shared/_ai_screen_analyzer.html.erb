@@ -1,6 +1,8 @@
 <% # AI Screen Analyzer Component %>
 
 <div>
+  <%# Resolve dinamicamente o endpoint respeitando o path de montagem definido no app host %>
+  <% endpoint_path = (analyze_screen_path rescue '/ai_screen_analyzer/analyze-screen') %>
   <!-- Botão flutuante para ativar análise -->
   <button 
     class="button"
@@ -269,6 +271,7 @@
     const errorEl = document.getElementById('ai-analyzer-error');
 
     const prompt = '<%= prompt %>';
+    const endpoint = '<%= endpoint_path %>';
 
     function openSidebar() {
       sidebar.classList.add('active');
@@ -321,7 +324,7 @@
             const imageData = canvas.toDataURL('image/jpeg', 0.8);
 
             // Enviar para backend
-            const response = await fetch('/ai_screen_analyzer/analyze-screen', {
+            const response = await fetch(endpoint, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

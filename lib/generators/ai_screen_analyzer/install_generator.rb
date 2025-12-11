@@ -29,6 +29,24 @@ module AiScreenAnalyzer
         RUBY
       end
 
+      def mount_engine_routes
+        routes_path = "config/routes.rb"
+
+        if File.exist?(routes_path)
+          content = File.read(routes_path)
+          already_mounted = content.include?("AiScreenAnalyzer::Engine")
+
+          unless already_mounted
+            say_status :route, "Montando AiScreenAnalyzer::Engine em /ai_screen_analyzer", :green
+            route "mount AiScreenAnalyzer::Engine => '/ai_screen_analyzer', as: 'ai_screen_analyzer_engine'"
+          else
+            say_status :route, "AiScreenAnalyzer::Engine já está montado (nenhuma alteração)", :blue
+          end
+        else
+          say_status :warning, "Arquivo config/routes.rb não encontrado. Adicione manualmente: mount AiScreenAnalyzer::Engine => '/ai_screen_analyzer', as: 'ai_screen_analyzer_engine'", :yellow
+        end
+      end
+
       def display_readme
         puts <<~TEXT
 
@@ -38,14 +56,19 @@ module AiScreenAnalyzer
 
           Próximos passos:
 
-          1. Configure sua chave de API da OpenAI:
+          1. Rotas montadas automaticamente:
+             - O engine foi montado em /ai_screen_analyzer
+             - Endpoint de análise: POST /ai_screen_analyzer/analyze-screen
+             - Se desejar mudar o path de montagem, ajuste em config/routes.rb e veja a seção "Rotas" do README.
+
+          2. Configure sua chave de API da OpenAI:
              - Abra config/initializers/ai_screen_analyzer.rb
              - Descomente e configure as opções desejadas
 
-          2. Adicione o helper em seu layout principal:
+          3. Adicione o helper em seu layout principal:
              <%= ai_screen_analyzer %>
 
-          3. Certifique-se de que a variável de ambiente está definida:
+          4. Certifique-se de que a variável de ambiente está definida:
              export OPENAI_API_KEY='sua_chave_aqui'
 
           Para mais informações, visite:

@@ -1,43 +1,43 @@
-# Guia de Publicação no RubyGems
+# RubyGems Publishing Guide
 
-Este documento descreve como publicar a gem `ai_screen_analyzer` no RubyGems.
+This document describes how to publish the `ai_screen_analyzer` gem to RubyGems.
 
-## Pré-requisitos
+## Prerequisites
 
-1. Conta no [RubyGems.org](https://rubygems.org)
-2. Git configurado localmente
-3. Bundler instalado
+1. Account on [RubyGems.org](https://rubygems.org)
+2. Git configured locally
+3. Bundler installed
 
-## Passos para Publicação
+## Publishing Steps
 
-### 1. Preparar o Repositório Git
+### 1. Prepare the Git Repository
 
 ```bash
-# Inicializar repositório Git (se ainda não estiver)
+# Initialize Git repository (if not already)
 git init
 
-# Adicionar todos os arquivos
+# Add all files
 git add .
 
-# Fazer commit inicial
+# Make the initial commit
 git commit -m "Initial commit: AI Screen Analyzer gem v0.1.0"
 
-# Criar uma tag para a versão
+# Create a tag for the version
 git tag -a v0.1.0 -m "Release version 0.1.0"
 ```
 
-### 2. Configurar Credenciais no RubyGems
+### 2. Configure RubyGems Credentials
 
 ```bash
-# Fazer login no RubyGems
+# Sign in to RubyGems
 gem signin
 
-# Você será solicitado a inserir seu email e senha do RubyGems
+# You will be prompted for your RubyGems email and password
 ```
 
-### 3. Atualizar Informações da Gem
+### 3. Update Gem Information
 
-Edite o arquivo `ai_screen_analyzer.gemspec` e atualize:
+Edit the `ai_screen_analyzer.gemspec` file and update:
 
 ```ruby
 spec.authors = ['José Lopes Neto']
@@ -45,44 +45,44 @@ spec.email = ['jlneto@mcfox.com.br']
 spec.homepage = 'https://github.com/mcfox/ai_screen_analyzer'
 ```
 
-### 4. Construir a Gem
+### 4. Build the Gem
 
 ```bash
 gem build ai_screen_analyzer.gemspec
 ```
 
-Isso criará um arquivo `.gem` no diretório atual.
+This will create a `.gem` file in the current directory.
 
-### 5. Publicar no RubyGems
+### 5. Publish to RubyGems
 
 ```bash
 gem push ai_screen_analyzer-0.1.0.gem
 ```
 
-Você verá uma mensagem de confirmação quando a gem for publicada com sucesso.
+You will see a confirmation message when the gem is successfully published.
 
-### 6. Verificar a Publicação
+### 6. Verify the Publication
 
-Acesse `https://rubygems.org/gems/ai_screen_analyzer` para verificar se a gem foi publicada corretamente.
+Visit `https://rubygems.org/gems/ai_screen_analyzer` to verify that the gem was published correctly.
 
-## Atualizações Futuras
+## Future Updates
 
-Para publicar uma nova versão:
+To publish a new version:
 
-1. Atualize a versão em `lib/ai_screen_analyzer/version.rb`
-2. Atualize o `CHANGELOG.md` com as mudanças
-3. Faça commit e crie uma tag Git
-4. Reconstrua e publique a gem
+1. Update the version in `lib/ai_screen_analyzer/version.rb`
+2. Update `CHANGELOG.md` with the changes
+3. Commit and create a Git tag
+4. Rebuild and publish the gem
 
 ```bash
-# Exemplo para versão 0.2.0
+# Example for version 0.2.0
 gem build ai_screen_analyzer.gemspec
 gem push ai_screen_analyzer-0.2.0.gem
 ```
 
-## Configuração do GitHub
+## GitHub Setup
 
-### Adicionar Repositório Remoto
+### Add Remote Repository
 
 ```bash
 git remote add origin https://github.com/seu-usuario/ai_screen_analyzer.git
@@ -91,25 +91,25 @@ git push -u origin main
 git push origin v0.1.0
 ```
 
-### Criar Release no GitHub
+### Create a Release on GitHub
 
-1. Acesse https://github.com/seu-usuario/ai_screen_analyzer/releases
-2. Clique em "Create a new release"
-3. Selecione a tag `v0.1.0`
-4. Adicione uma descrição das mudanças
-5. Publique a release
+1. Go to https://github.com/seu-usuario/ai_screen_analyzer/releases
+2. Click "Create a new release"
+3. Select the tag `v0.1.0`
+4. Add a description of the changes
+5. Publish the release
 
-## Melhorias Recomendadas Antes de Publicar
+## Recommended Improvements Before Publishing
 
-- [ ] Adicionar testes automatizados com RSpec
-- [ ] Configurar CI/CD (GitHub Actions)
-- [ ] Adicionar badges ao README (build status, gem version, etc.)
-- [ ] Documentação completa no README
-- [ ] Exemplos de uso
-- [ ] Licença MIT configurada
-- [ ] Arquivo CHANGELOG.md atualizado
+- [ ] Add automated tests with RSpec
+- [ ] Set up CI/CD (GitHub Actions)
+- [ ] Add badges to README (build status, gem version, etc.)
+- [ ] Complete documentation in README
+- [ ] Usage examples
+- [ ] MIT License configured
+- [ ] CHANGELOG.md file updated
 
-## Exemplo de Badge para README
+## Example Badges for README
 
 ```markdown
 [![Gem Version](https://badge.fury.io/rb/ai_screen_analyzer.svg)](https://badge.fury.io/rb/ai_screen_analyzer)
@@ -118,20 +118,20 @@ git push origin v0.1.0
 
 ## Troubleshooting
 
-### Erro: "Gem already exists"
+### Error: "Gem already exists"
 
-Se receber este erro, significa que a versão já foi publicada. Atualize a versão em `lib/ai_screen_analyzer/version.rb`.
+If you receive this error, it means the version has already been published. Update the version in `lib/ai_screen_analyzer/version.rb`.
 
-### Erro: "Unauthorized"
+### Error: "Unauthorized"
 
-Certifique-se de que você fez login com `gem signin` e que suas credenciais estão corretas.
+Make sure you are logged in with `gem signin` and that your credentials are correct.
 
-### Erro: "Invalid gemspec"
+### Error: "Invalid gemspec"
 
-Verifique se o arquivo `ai_screen_analyzer.gemspec` está correto e se todos os arquivos listados existem.
+Check that the `ai_screen_analyzer.gemspec` file is correct and that all listed files exist.
 
-## Suporte
+## Support
 
-Para mais informações sobre publicação de gems, visite:
+For more information about publishing gems, visit:
 - [RubyGems.org Help](https://guides.rubygems.org/)
 - [Creating and Publishing Your First Ruby Gem](https://guides.rubygems.org/publishing/)

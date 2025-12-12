@@ -1,26 +1,26 @@
 # Changelog
 
-Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
+All notable changes to this project will be documented in this file.
 
-O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-e este projeto segue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.1.0] - 2024-12-10
 
 ### Added
-- Versão inicial da gem AI Screen Analyzer
-- Helper `ai_screen_analyzer` para adicionar análise de tela com IA em qualquer página
-- Botão flutuante customizável
-- Barra lateral elegante para exibir resultados
-- Suporte para prompts customizáveis
-- Controller para processar requisições de análise
-- Integração com API GPT-4V da OpenAI
-- Generator de instalação automática
-- Documentação completa
+- Initial release of AI Screen Analyzer gem
+- `ai_screen_analyzer` helper to add AI screen analysis to any page
+- Customizable floating button
+- Elegant sidebar to display results
+- Support for customizable prompts
+- Controller to process analysis requests
+- Integration with OpenAI GPT-4V API
+- Installation generator
+- Complete documentation
 
 ### Features
-- Captura de tela usando html2canvas
-- Envio de imagem para análise com IA
-- Exibição de resultados em tempo real
-- Suporte a customização de cores e textos
-- Responsivo para dispositivos móveis
+- Screenshot capture using html2canvas
+- Image upload for AI analysis
+- Real-time results display
+- Support for customizing colors and texts
+- Responsive for mobile devices

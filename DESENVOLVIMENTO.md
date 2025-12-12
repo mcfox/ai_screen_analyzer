@@ -1,90 +1,90 @@
-# Guia de Desenvolvimento
+# Development Guide
 
-Este documento descreve como configurar o ambiente de desenvolvimento para trabalhar com a gem `ai_screen_analyzer`.
+This document describes how to set up the development environment to work on the `ai_screen_analyzer` gem.
 
-## Configuração do Ambiente
+## Environment Setup
 
-### 1. Clonar o Repositório
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/seu-usuario/ai_screen_analyzer.git
 cd ai_screen_analyzer
 ```
 
-### 2. Instalar Dependências
+### 2. Install Dependencies
 
 ```bash
 bundle install
 ```
 
-### 3. Configurar Variáveis de Ambiente
+### 3. Configure Environment Variables
 
-Crie um arquivo `.env` na raiz do projeto:
+Create a `.env` file at the project root:
 
 ```bash
-OPENAI_API_KEY=sua_chave_aqui
+OPENAI_API_KEY=your_key_here
 ```
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 ai_screen_analyzer/
 ├── app/
-│   ├── controllers/          # Controllers da gem
-│   ├── helpers/              # Helpers da gem
-│   └── views/                # Views da gem
+│   ├── controllers/          # Gem controllers
+│   ├── helpers/              # Gem helpers
+│   └── views/                # Gem views
 ├── config/
-│   └── routes.rb             # Rotas da gem
+│   └── routes.rb             # Gem routes
 ├── lib/
-│   ├── ai_screen_analyzer.rb # Arquivo principal
+│   ├── ai_screen_analyzer.rb # Main file
 │   ├── ai_screen_analyzer/
 │   │   ├── engine.rb         # Rails Engine
-│   │   └── version.rb        # Versão da gem
+│   │   └── version.rb        # Gem version
 │   └── generators/           # Generators
-├── spec/                     # Testes
-├── Gemfile                   # Dependências
-├── Rakefile                  # Tarefas Rake
-├── README.md                 # Documentação
-└── ai_screen_analyzer.gemspec # Especificação da gem
+├── spec/                     # Tests
+├── Gemfile                   # Dependencies
+├── Rakefile                  # Rake tasks
+├── README.md                 # Documentation
+└── ai_screen_analyzer.gemspec # Gem specification
 ```
 
-## Desenvolvimento
+## Development
 
-### Executar Testes
+### Run Tests
 
 ```bash
 bundle exec rspec
 ```
 
-### Executar Linter
+### Run Linter
 
 ```bash
 bundle exec rubocop
 ```
 
-### Corrigir Problemas de Linting
+### Fix Linting Issues
 
 ```bash
 bundle exec rubocop -A
 ```
 
-## Testando a Gem Localmente
+## Testing the Gem Locally
 
-### Opção 1: Usar a Gem em um Projeto Local
+### Option 1: Use the Gem in a Local Project
 
-No seu `Gemfile` do projeto Rails:
+In your Rails project's `Gemfile`:
 
 ```ruby
 gem 'ai_screen_analyzer', path: '../ai_screen_analyzer'
 ```
 
-Depois execute:
+Then run:
 
 ```bash
 bundle install
 ```
 
-### Opção 2: Instalar a Gem Localmente
+### Option 2: Install the Gem Locally
 
 ```bash
 cd ai_screen_analyzer
@@ -92,50 +92,50 @@ gem build ai_screen_analyzer.gemspec
 gem install ai_screen_analyzer-0.1.0.gem
 ```
 
-## Adicionando Novos Recursos
+## Adding New Features
 
-### 1. Criar um Branch
+### 1. Create a Branch
 
 ```bash
-git checkout -b feature/novo-recurso
+git checkout -b feature/new-feature
 ```
 
-### 2. Fazer as Mudanças
+### 2. Make the Changes
 
-Edite os arquivos necessários e adicione testes.
+Edit the necessary files and add tests.
 
-### 3. Executar Testes
+### 3. Run Tests
 
 ```bash
 bundle exec rspec
 ```
 
-### 4. Fazer Commit
+### 4. Commit
 
 ```bash
 git add .
-git commit -m "Add novo recurso"
+git commit -m "Add new feature"
 ```
 
-### 5. Fazer Push e Criar Pull Request
+### 5. Push and Create Pull Request
 
 ```bash
-git push origin feature/novo-recurso
+git push origin feature/new-feature
 ```
 
-## Atualizando a Versão
+## Bumping the Version
 
-1. Edite `lib/ai_screen_analyzer/version.rb`:
+1. Edit `lib/ai_screen_analyzer/version.rb`:
 
 ```ruby
 module AiScreenAnalyzer
-  VERSION = "0.2.0"  # Atualize a versão
+  VERSION = "0.2.0"  # Update the version
 end
 ```
 
-2. Atualize `CHANGELOG.md` com as mudanças
+2. Update `CHANGELOG.md` with the changes
 
-3. Faça commit:
+3. Commit:
 
 ```bash
 git add .
@@ -143,58 +143,58 @@ git commit -m "Bump version to 0.2.0"
 git tag -a v0.2.0 -m "Release version 0.2.0"
 ```
 
-## Publicando uma Nova Versão
+## Publishing a New Version
 
 ```bash
 gem build ai_screen_analyzer.gemspec
 gem push ai_screen_analyzer-0.2.0.gem
 ```
 
-## Documentação
+## Documentation
 
-A documentação é gerada usando YARD. Para gerar a documentação:
+Documentation is generated using YARD. To generate the docs:
 
 ```bash
 bundle exec yard
 ```
 
-A documentação será gerada em `doc/`.
+The documentation will be generated in `doc/`.
 
-## Padrões de Código
+## Code Standards
 
-Este projeto segue os padrões:
+This project follows:
 
-- **Ruby Style Guide:** Configurado via Rubocop
-- **Rails Style Guide:** Padrões Rails padrão
-- **Testes:** RSpec com boas práticas
+- **Ruby Style Guide:** Configured via Rubocop
+- **Rails Style Guide:** Rails conventions
+- **Tests:** RSpec with best practices
 
-## Contribuindo
+## Contributing
 
-1. Fork o repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+1. Fork the repository
+2. Create a branch for your feature (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Reportando Bugs
+## Reporting Bugs
 
-Use o GitHub Issues para reportar bugs. Inclua:
+Use GitHub Issues to report bugs. Include:
 
-- Descrição clara do bug
-- Passos para reproduzir
-- Comportamento esperado
-- Comportamento atual
-- Screenshots (se aplicável)
-- Ambiente (versão do Rails, Ruby, etc.)
+- Clear description of the bug
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- Screenshots (if applicable)
+- Environment (Rails version, Ruby, etc.)
 
-## Solicitando Features
+## Requesting Features
 
-Use o GitHub Discussions ou Issues para solicitar novas features. Descreva:
+Use GitHub Discussions or Issues to request new features. Describe:
 
-- O caso de uso
-- Como a feature deveria funcionar
-- Exemplos de uso
+- The use case
+- How the feature should work
+- Usage examples
 
-## Contato
+## Contact
 
-Para dúvidas ou sugestões, abra uma issue no GitHub.
+For questions or suggestions, open an issue on GitHub.

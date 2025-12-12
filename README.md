@@ -1,69 +1,69 @@
 # AI Screen Analyzer
 
-Uma gem Rails elegante e poderosa que adiciona análise de tela com IA em qualquer aplicação. Com um simples helper, você pode capturar o conteúdo visual de qualquer página, enviar para análise com GPT-4V e exibir o resultado em uma barra lateral interativa.
+An elegant and powerful Rails gem that adds AI-powered screen analysis to any application. With a simple helper, you can capture the visual content of any page, send it for analysis with GPT-4V, and display the result in an interactive sidebar.
 
-## Características
+## Features
 
-- **Botão Flutuante Customizável:** Um botão elegante que aparece em qualquer página.
-- **Captura de Tela Automática:** Utiliza `html2canvas` para capturar o conteúdo visual da página.
-- **Análise com IA:** Integração com GPT-4V da OpenAI para análise inteligente.
-- **Barra Lateral Responsiva:** Exibe resultados em uma sidebar elegante e não intrusiva.
-- **Prompts Customizáveis:** Configure prompts diferentes para diferentes casos de uso.
-- **Fácil Integração:** Basta adicionar uma linha de código em seu layout.
-- **Sem Dependências Externas:** Usa apenas bibliotecas padrão do Rails.
+- **Customizable Floating Button:** A sleek button that appears on any page.
+- **Automatic Screenshot Capture:** Uses `html2canvas` to capture the visual content of the page.
+- **AI Analysis:** Integration with OpenAI's GPT-4V for intelligent analysis.
+- **Responsive Sidebar:** Displays results in an elegant, non-intrusive sidebar.
+- **Customizable Prompts:** Configure different prompts for different use cases.
+- **Easy Integration:** Just add one line of code to your layout.
+- **No External Dependencies:** Uses only standard Rails libraries.
 
-## Instalação
+## Installation
 
-Adicione a gem ao seu `Gemfile`:
+Add the gem to your `Gemfile`:
 
 ```ruby
 gem 'ai_screen_analyzer'
 ```
 
-Execute o bundler:
+Run bundler:
 
 ```bash
 bundle install
 ```
 
-Execute o generator de instalação:
+Run the installation generator:
 
 ```bash
 rails generate ai_screen_analyzer:install
 ```
 
-## Rotas
+## Routes
 
-O generator monta automaticamente o engine em seu aplicativo host. Após a instalação, estas rotas ficam disponíveis por padrão:
+The generator automatically mounts the engine in your host application. After installation, these routes are available by default:
 
-- Engine montado em: `/ai_screen_analyzer`
-- Endpoint de análise: `POST /ai_screen_analyzer/analyze-screen`
+- Engine mounted at: `/ai_screen_analyzer`
+- Analysis endpoint: `POST /ai_screen_analyzer/analyze-screen`
 
-Caso precise montar manualmente (ou personalizar o caminho), adicione em `config/routes.rb` do seu app:
+If you need to mount manually (or customize the path), add this to your app's `config/routes.rb`:
 
 ```ruby
 # Mount the AiScreenAnalyzer engine, exposing its routes under /ai_screen_analyzer
 mount AiScreenAnalyzer::Engine => '/ai_screen_analyzer', as: 'ai_screen_analyzer_engine'
 
-# (Opcional) Alias direto para compatibilidade com chamadas existentes
+# (Optional) Direct alias for compatibility with existing calls
 post '/ai_screen_analyzer/analyze-screen', to: 'ai_screen_analyzer/ai_analyzer#analyze_screen'
 ```
 
-Observações:
-- A view da gem usa helpers de rota para resolver o endpoint dinamicamente conforme o path montado, evitando 404 quando você personaliza o caminho.
-- Se alterar o path de montagem, não é necessário mudar nada na view; o helper apontará para o novo caminho.
+Notes:
+- The gem's view uses route helpers to resolve the endpoint dynamically according to the mounted path, avoiding 404s when you customize the path.
+- If you change the mount path, you don't need to change anything in the view; the helper will point to the new path.
 
-## Configuração
+## Configuration
 
-### 1. Chave de API da OpenAI
+### 1. OpenAI API Key
 
-Defina sua chave de API da OpenAI como variável de ambiente:
+Set your OpenAI API key as an environment variable:
 
 ```bash
-export OPENAI_API_KEY='sua_chave_secreta_aqui'
+export OPENAI_API_KEY='your_secret_key_here'
 ```
 
-Ou configure no arquivo `config/initializers/ai_screen_analyzer.rb`:
+Or configure it in `config/initializers/ai_screen_analyzer.rb`:
 
 ```ruby
 AiScreenAnalyzer.configure do |config|
@@ -72,9 +72,9 @@ AiScreenAnalyzer.configure do |config|
 end
 ```
 
-### 2. Adicionar o Helper ao Layout
+### 2. Add the Helper to the Layout
 
-Abra seu layout principal (`app/views/layouts/application.html.erb`) e adicione:
+Open your main layout (`app/views/layouts/application.html.erb`) and add:
 
 ```erb
 <body>
@@ -84,74 +84,74 @@ Abra seu layout principal (`app/views/layouts/application.html.erb`) e adicione:
 </body>
 ```
 
-## Uso
+## Usage
 
-### Uso Básico
+### Basic Usage
 
 ```erb
 <%= ai_screen_analyzer %>
 ```
 
-### Com Customizações
+### With Customizations
 
 ```erb
 <%= ai_screen_analyzer(
-  prompt: "Você é um especialista em UX. Analise esta interface e forneça feedback.",
-  button_text: "Revisar Design",
-  sidebar_title: "Feedback de UX"
+  prompt: "You are a UX expert. Analyze this interface and provide feedback.",
+  button_text: "Review Design",
+  sidebar_title: "UX Feedback"
 ) %>
 ```
 
-## Opções
+## Options
 
-| Opção | Descrição | Padrão |
+| Option | Description | Default |
 |-------|-----------|--------|
-| `prompt` | O texto do prompt enviado para a IA junto com a imagem | "Analise o conteúdo visível nesta tela..." |
-| `button_text` | Texto exibido no botão flutuante | "Analisar com IA" |
-| `sidebar_title` | Título da barra lateral de resultados | "Análise da IA" |
+| `prompt` | The prompt text sent to the AI along with the image | "Analyze the visible content on this screen..." |
+| `button_text` | Text displayed on the floating button | "Analyze with AI" |
+| `sidebar_title` | Title of the results sidebar | "AI Analysis" |
 
-## Exemplos de Uso
+## Usage Examples
 
-### Análise de UX/UI
-
-```erb
-<%= ai_screen_analyzer(
-  prompt: "Você é um especialista em UX/UI. Analise esta interface e forneça feedback sobre: 1) Hierarquia visual, 2) Acessibilidade, 3) Consistência de design, 4) Sugestões de melhoria.",
-  button_text: "Revisar Design",
-  sidebar_title: "Feedback de UX/UI"
-) %>
-```
-
-### Análise de Acessibilidade
+### UX/UI Analysis
 
 ```erb
 <%= ai_screen_analyzer(
-  prompt: "Você é um especialista em acessibilidade web (WCAG). Analise esta página e identifique possíveis problemas de acessibilidade.",
-  button_text: "Verificar Acessibilidade",
-  sidebar_title: "Análise de Acessibilidade"
+  prompt: "You are a UX/UI expert. Analyze this interface and provide feedback on: 1) Visual hierarchy, 2) Accessibility, 3) Design consistency, 4) Improvement suggestions.",
+  button_text: "Review Design",
+  sidebar_title: "UX/UI Feedback"
 ) %>
 ```
 
-### Análise de Conteúdo
+### Accessibility Analysis
 
 ```erb
 <%= ai_screen_analyzer(
-  prompt: "Analise o conteúdo textual desta página. Avalie: 1) Clareza da mensagem, 2) Qualidade da redação, 3) Adequação do tom.",
-  button_text: "Analisar Conteúdo",
-  sidebar_title: "Análise de Conteúdo"
+  prompt: "You are a web accessibility (WCAG) specialist. Analyze this page and identify potential accessibility issues.",
+  button_text: "Check Accessibility",
+  sidebar_title: "Accessibility Analysis"
 ) %>
 ```
 
-## Como Funciona
+### Content Analysis
 
-1. O usuário clica no botão "Analisar com IA".
-2. A biblioteca JavaScript `html2canvas` captura a imagem do corpo da página.
-3. A imagem é convertida para base64 e enviada para o backend Rails.
-4. O controller processa a imagem e a envia para a API do GPT-4V.
-5. A IA analisa a imagem de acordo com o prompt fornecido.
-6. O resultado é retornado e exibido na barra lateral.
+```erb
+<%= ai_screen_analyzer(
+  prompt: "Analyze the textual content of this page. Evaluate: 1) Clarity of message, 2) Writing quality, 3) Tone appropriateness.",
+  button_text: "Analyze Content",
+  sidebar_title: "Content Analysis"
+) %>
+```
 
-## Estrutura da Gem
+## How It Works
+
+1. The user clicks the "Analyze with AI" button.
+2. The `html2canvas` JavaScript library captures an image of the page body.
+3. The image is converted to base64 and sent to the Rails backend.
+4. The controller processes the image and sends it to the GPT-4V API.
+5. The AI analyzes the image according to the provided prompt.
+6. The result is returned and displayed in the sidebar.
+
+## Gem Structure
 
 ```
 ai_screen_analyzer/
@@ -183,62 +183,62 @@ ai_screen_analyzer/
 └── CHANGELOG.md
 ```
 
-## Requisitos
+## Requirements
 
-- Rails 6.0 ou superior
-- Ruby 2.7.0 ou superior
-- Chave de API válida da OpenAI (com acesso ao modelo gpt-4-turbo)
+- Rails 6.0 or higher
+- Ruby 2.7.0 or higher
+- Valid OpenAI API key (with access to the gpt-4-turbo model)
 
-## Solução de Problemas
+## Troubleshooting
 
-### O botão não aparece
+### The button does not appear
 
-Verifique se o helper está sendo chamado corretamente no seu layout e se não há erros no console do navegador.
+Make sure the helper is being called correctly in your layout and there are no errors in the browser console.
 
-### A análise não funciona
+### Analysis is not working
 
-Certifique-se de que:
-- A chave de API da OpenAI está configurada corretamente
-- Você tem créditos suficientes em sua conta OpenAI
-- A rota está registrada corretamente
+Ensure that:
+- The OpenAI API key is configured correctly
+- You have sufficient credits in your OpenAI account
+- The route is registered correctly
 
-### Erro 404 ao chamar analyze-screen
+### 404 error when calling analyze-screen
 
-- Garanta que o engine esteja montado no app host. Por padrão, o generator já adiciona esta linha ao seu `config/routes.rb`:
+- Ensure the engine is mounted in the host app. By default, the generator already adds this line to your `config/routes.rb`:
 
   ```ruby
   mount AiScreenAnalyzer::Engine => '/ai_screen_analyzer', as: 'ai_screen_analyzer_engine'
   ```
 
-- Se você removeu a montagem automática, adicione-a manualmente como acima.
-- Reinicie o servidor após mudar as rotas.
-- Rode `bin/rails routes | grep ai_screen_analyzer` para confirmar a presença do endpoint `analyze-screen`.
+- If you removed the automatic mount, add it manually as above.
+- Restart the server after changing routes.
+- Run `bin/rails routes | grep ai_screen_analyzer` to confirm the presence of the `analyze-screen` endpoint.
 
-### Erro de CORS
+### CORS error
 
-Se você receber erros de CORS ao capturar a tela, verifique se todos os recursos externos estão usando HTTPS.
+If you receive CORS errors when capturing the screen, ensure that all external resources are using HTTPS.
 
-## Contribuindo
+## Contributing
 
-As contribuições são bem-vindas! Por favor, abra uma issue ou envie um pull request.
+Contributions are welcome! Please open an issue or submit a pull request.
 
-## Licença
+## License
 
-Esta gem é licenciada sob a Licença MIT. Veja o arquivo LICENSE.txt para mais detalhes.
+This gem is licensed under the MIT License. See LICENSE.txt for details.
 
-## Suporte
+## Support
 
-Para suporte, abra uma issue no repositório GitHub ou entre em contato com os mantenedores.
+For support, open an issue in the GitHub repository or contact the maintainers.
 
 ## Changelog
 
-Veja o arquivo CHANGELOG.md para uma lista de todas as mudanças.
+See the CHANGELOG.md file for a list of all changes.
 
 ## Roadmap
 
-- Suporte para outros modelos de IA (Claude, Gemini, etc.)
-- Cache de análises anteriores
-- Histórico de análises
-- Exportação de resultados
-- Integração com ferramentas de design
-- Suporte para análise de múltiplas telas
+- Support for other AI models (Claude, Gemini, etc.)
+- Cache of previous analyses
+- Analysis history
+- Export results
+- Integration with design tools
+- Support for multi-screen analysis

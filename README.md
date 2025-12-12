@@ -1,6 +1,8 @@
 # AI Screen Analyzer
 
-An elegant and powerful Rails gem that adds AI-powered screen analysis to any application. With a simple helper, you can capture the visual content of any page, send it for analysis with GPT-4V, and display the result in an interactive sidebar.
+A Rails gem that adds AI-powered screen analysis to any application. With a simple helper, you can capture the visual content of any page, send it for analysis with GPT-4V, and display the result in an interactive sidebar.
+
+![usage_sample.gif](sample.gif)
 
 ## Features
 
@@ -237,8 +239,4 @@ See the CHANGELOG.md file for a list of all changes.
 ## Roadmap
 
 - Support for other AI models (Claude, Gemini, etc.)
-- Cache of previous analyses
-- Analysis history
-- Export results
-- Integration with design tools
-- Support for multi-screen analysis
+- Cache of recent analyses
